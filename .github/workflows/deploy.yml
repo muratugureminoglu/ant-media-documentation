@@ -16,10 +16,8 @@ jobs:
         node-version: '16.x'
     - run: npm install
     - run: npm run build
-    - run: mv build docs
-    - run: pwd
-    - run: cd ./docs
-    - run: pwd
+    - run: ls -alh
+    - run: cd build
     - run: tar -zcvf ../docs.tar .
     - run: pwd 
     - run: ls -alh
