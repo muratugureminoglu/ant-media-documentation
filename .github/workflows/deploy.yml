@@ -27,7 +27,7 @@ jobs:
         ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
         
     - name: connect and pull
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'test' >> test.txt"
+      run: scp -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:
     - name: cleanup
       run: rm -rf ~/.ssh
 
