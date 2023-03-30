@@ -6,7 +6,7 @@ on:
   
 jobs:
   run_pull:
-    name: run pull
+    name: docs
     runs-on: ubuntu-latest
     
     steps:
@@ -17,7 +17,8 @@ jobs:
     - run: npm install
     - run: npm run build
     - run: mv build docs
-    - run: cd docs
+    - run: pwd
+    - run: cd ./docs
     - run: pwd
     - run: tar -zcvf ../docs.tar .
     - run: pwd 
