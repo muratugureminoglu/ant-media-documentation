@@ -14,11 +14,4 @@ jobs:
       run: |
         install -m 600 -D /dev/null ~/.ssh/id_rsa
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 400 ~/.ssh/id_rsa
-        cat ~/.ssh/id_rsa
-        ls -alh ~/.ssh/id_rsa
-
-    - name: connect and pull
-      run: ssh -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'test' > test.txt"
-    - name: cleanup
-      run: rm -rf ~/.ssh
+        ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
