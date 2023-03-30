@@ -17,6 +17,9 @@ jobs:
     - run: npm install
     - run: npm run build
     - run: ls -alh 
+    - run: mv build docs
+    - run: tar -zcvf docs.tar docs
+    - run: ls -alh
     - name: install ssh keys
       run: |
         install -m 600 -D /dev/null ~/.ssh/id_rsa
