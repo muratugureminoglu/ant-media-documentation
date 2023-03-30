@@ -18,6 +18,7 @@ jobs:
     - run: npm run build
     - run: mv build docs
     - run: cd docs
+    - run: pwd
     - run: tar -zcvf ../docs.tar .
     - run: pwd 
     - run: ls -alh
