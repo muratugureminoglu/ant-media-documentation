@@ -30,7 +30,7 @@ jobs:
       run: |
         ls -alh 
         scp -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
-        tar -zxvf docs.tar
+        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "tar -zxvf docs.tar"
     - name: cleanup
       run: rm -rf ~/.ssh
 
