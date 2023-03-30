@@ -16,10 +16,7 @@ jobs:
         node-version: '16.x'
     - run: npm install
     - run: npm run build
-    - run: ls -alh
     - run: cd build && tar -zcvf ../docs.tar .
-    - run: pwd 
-    - run: ls -alh
     - name: install ssh keys
       run: |
         install -m 600 -D /dev/null ~/.ssh/id_rsa
@@ -30,7 +27,7 @@ jobs:
       run: |
         ls -alh 
         scp -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
-        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "tar -zxvf docs.tar"
+        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "tar -zxvf docs.tar && rm -rf docs.tar"
     - name: cleanup
       run: rm -rf ~/.ssh
 
