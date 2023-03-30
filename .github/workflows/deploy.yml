@@ -19,6 +19,8 @@ jobs:
     - run: mv build docs
     - run: cd docs
     - run: tar -zcvf ../docs.tar .
+    - run: pwd 
+    - run: ls -alh
     - name: install ssh keys
       run: |
         install -m 600 -D /dev/null ~/.ssh/id_rsa
@@ -27,6 +29,7 @@ jobs:
         
     - name: connect and pull
       run: |
+        ls -alh 
         scp -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
         tar -zxvf docs.tar
     - name: cleanup
