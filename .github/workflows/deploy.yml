@@ -17,7 +17,8 @@ jobs:
     - run: npm install
     - run: npm run build
     - run: mv build docs
-    - run: tar -zcvf docs.tar docs
+    - run: cd docs
+    - run: tar -zcvf ../docs.tar .
     - name: install ssh keys
       run: |
         install -m 600 -D /dev/null ~/.ssh/id_rsa
@@ -25,7 +26,9 @@ jobs:
         ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
         
     - name: connect and pull
-      run: scp -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
+      run: |
+        scp -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
+        tar -zxvf docs.tar
     - name: cleanup
       run: rm -rf ~/.ssh
 
